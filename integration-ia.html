@@ -24,7 +24,7 @@
 <link rel="preload" href="assets/fonts/Inter-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css?v=34">
 <link rel="stylesheet" href="assets/monde.css?v=34">
-<link rel="stylesheet" href="assets-v3/v3.css?v=43">
+<link rel="stylesheet" href="assets-v3/v3.css?v=46">
 <script>document.documentElement.classList.add('js');setTimeout(()=>{if(!window.__sj)document.documentElement.classList.add('rv')},2500)</script>
 </head>
 <body class="monde v3">
@@ -64,11 +64,10 @@
       <div class="gb-track" role="img" aria-label="Sur 100 ETI : 13 gagnent du temps avec l’IA, 64 l’utilisent sans gain, 23 ne l’utilisent pas encore.">
         <span class="gb gb-a"><b>13 %</b><small>un vrai gain</small></span><span class="gb gb-b"><b>64 %</b><small>l’IA, sans le gain</small></span><span class="gb gb-c"><b>23 %</b><small>pas encore</small></span>
       </div>
-      <ul class="gb-cards">
-        <li class="gb-a"><b><i></i>13 % · Un vrai gain</b><span>L’IA fait gagner du temps, et c’est mesuré.</span></li>
-        <li class="gb-b"><b><i></i>64 % · L’IA, sans le gain</b><span>Les équipes s’en servent, sans gain constaté. <strong>C’est là que j’interviens.</strong></span></li>
-        <li class="gb-c"><b><i></i>23 % · Pas encore</b><span>L’IA n’est pas encore utilisée.</span></li>
-      </ul>
+      <div class="gb-me" aria-hidden="false">
+        <span class="gb-me-pad"></span>
+        <div class="gb-me-zone"><span class="gb-me-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></svg></span><p><b>C’est là que j’interviens :</b> faire passer ces 64 % de l’usage de l’IA à un vrai gain de temps.</p></div>
+      </div>
       <p class="srcnote">Baromètre des ETI, Bpifrance Le Lab, juin 2026 · 534 dirigeants. 17 % des 77 % qui utilisent l’IA, soit environ 13 % de toutes les ETI.</p>
     </div>
   </div>
@@ -158,7 +157,7 @@
         <h3>Vous gardez</h3>
         <ul><li>Le rapport d’audit chiffré</li><li>La charte IA de l’entreprise</li><li>Les guides et les formations</li><li>Une ligne directe avec moi</li></ul>
       </div>
-      <a class="bx bx-small" id="atelier" href="rendez-vous.html"><img src="assets-v3/img/apple/offre-atelier.webp" alt="" loading="lazy"><h3>Un atelier d’une journée</h3><p>Pour commencer petit.</p><span class="lnk">En parler<svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></span></a>
+      <a class="bx bx-small" id="former" href="rendez-vous.html"><img src="assets-v3/img/apple/gain-competences.webp" alt="" loading="lazy"><h3>Former vos équipes</h3><p>Chacun apprend sur ses propres tâches.</p><span class="lnk">En parler<svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></span></a>
       <a class="bx bx-small" href="produit.html"><img src="assets-v3/img/apple/offre-sur-mesure.webp" alt="" loading="lazy"><h3>Un outil sur mesure</h3><p>Quand il manque un outil.</p><span class="lnk">Construire un produit<svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></span></a>
     </div>
     <h3 class="guar-title" data-r>Pour commencer sans risque</h3>
@@ -198,9 +197,9 @@
           <label class="fld"><span>Entreprise <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le nom suffit. Je regarde seulement ce qui est public : votre site, vos offres d’emploi, votre page LinkedIn.</span></button></span><input name="entreprise" autocomplete="organization" maxlength="100" placeholder="Nom de l’entreprise"></label>
           <label class="fld"><span>Le service le plus chargé <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le service où l’équipe manque le plus de temps : administration des ventes, service client, comptabilité… La mini-analyse porte sur lui.</span></button></span><input name="service" maxlength="100" placeholder="Ex. : service client"></label>
         </div>
-        <fieldset class="rdv-row"><legend>Ce qui vous intéresse <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip"><b>La mini-analyse</b> : une page gratuite sous 24 h sur ce service.<br><b>Un atelier d’une journée</b> : je forme votre équipe à l’IA sur ses vraies tâches.<br><b>Un outil sur mesure</b> : une app ou un outil construit pour votre équipe.</span></button></legend>
+        <fieldset class="rdv-row"><legend>Ce qui vous intéresse <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip"><b>La mini-analyse</b> : une page gratuite sous 24 h sur ce service.<br><b>Former mes équipes</b> : chaque personne apprend l’IA sur ses propres tâches, et les formations restent enregistrées.<br><b>Un outil sur mesure</b> : une app ou un outil construit pour votre équipe.</span></button></legend>
           <label><input type="radio" name="besoin" value="Recevoir la mini-analyse" checked><span>La mini-analyse</span></label>
-          <label><input type="radio" name="besoin" value="Un atelier d’une journée"><span>Un atelier d’une journée</span></label>
+          <label><input type="radio" name="besoin" value="Former mes équipes"><span>Former mes équipes</span></label>
           <label><input type="radio" name="besoin" value="Un outil sur mesure"><span>Un outil sur mesure</span></label>
         </fieldset>
         <div class="lf-actions">

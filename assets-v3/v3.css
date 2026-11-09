@@ -951,3 +951,30 @@ video.t-bg[poster*="bf-29"],img[src*="bf-29"]{object-position:78% 30%}
   .lf .tip-pop,.lf .tip:hover .tip-pop,.lf .tip:focus .tip-pop,.lf .tip.open .tip-pop{left:0;right:0;width:auto;bottom:calc(100% + 4px);transform:none}
   .lf .tip-pop::after{display:none}
 }
+
+/* ===================== Retours du 9 nov. (4e note) ===================== */
+/* Surtitres : sans point, une pastille de verre claire, un peu plus affirmée */
+.sec-head .kicker::before,.vision .kicker::before,.who .kicker::before,.feat-main .kicker::before{content:none;display:none}
+.sec-head .kicker,.vision .kicker,.who .kicker,.feat-main .kicker{padding:7px 15px;border-radius:99px;background:linear-gradient(180deg,#FFFFFF,#F7F8FA);box-shadow:inset 0 1px 0 #fff,0 1px 2px #0000000F,0 10px 24px #0000000F;color:var(--ink);font-size:13.5px;font-weight:600;letter-spacing:-.005em}
+.panel:not(.open) .sec-head .kicker,.panel:not(.open) .vision .kicker,.panel:not(.open) .who .kicker{background:#F1F2F5;box-shadow:inset 0 1px 0 #FFFFFFB3;color:var(--ink)}
+/* Titres et sous-titres de section : un espacement régulier */
+.sec-head .big{margin-top:16px}
+.sec-head .lead{margin:16px auto 0;max-width:40em;color:var(--soft-ink);line-height:1.55;text-wrap:pretty}
+
+/* Le constat : sous la barre, un seul visuel aligné sur les 64 % */
+.gb-me{display:flex;gap:6px;margin-top:12px}
+.gb-me-pad{flex:0 0 13%}
+.gb-me-zone{position:relative;flex:0 0 64%;display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:16px;background:var(--ink);color:#fff}
+.gb-me-zone::before{content:"";position:absolute;left:50%;top:-6px;width:14px;height:14px;border-radius:3px;background:var(--ink);transform:translateX(-50%) rotate(45deg)}
+.gb-me-arrow{flex:0 0 auto;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#FFFFFF1F}
+.gb-me-arrow svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.gb-me-zone p{margin:0;font-size:15px;line-height:1.45;color:#E4E4EA}
+.gb-me-zone b{color:#fff}
+.gapbar .srcnote{margin-top:18px;color:var(--soft-ink)}
+@media (max-width:760px){.gb-me-pad{display:none}.gb-me-zone{flex:1 1 auto}.gb-me-zone::before{left:28px;transform:rotate(45deg)}.gb-me-arrow svg{transform:rotate(90deg)}}
+
+/* Aide « ? » du formulaire : un texte foncé, bien lisible */
+.lf .fld .tip-pop,.lf .rdv-row .tip-pop,.tip-pop{display:block;margin:0;color:#1D1D1F;font-size:13.5px;font-weight:500;line-height:1.5}
+.tip-pop b{color:#000}
+.panel.dark .sec-head .kicker{background:#FFFFFF14;color:#D9D9DE;box-shadow:none}
+@media (max-width:760px){.gb-me-zone::before{display:none}}
