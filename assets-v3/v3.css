@@ -1,0 +1,953 @@
+/* tomberthet.fr v3 (brouillon du 7 novembre 2026). S'ajoute à assets/site.css et assets/monde.css (la DA de la v1).
+   Ajoute : en-tête centré pour toutes les pages, fin « de nuit » renforcée, fin « fin de journée », pied de page noir,
+   et les composants des nouvelles pages. Les titres n'ont plus de seconde moitié grisée. */
+
+:root{--acc:#2E5E8C;--acc-l:#A9CBEA;--acc-t:#E6EFF8}
+/* ===== Titres : plus de gris dans les titres ===== */
+.v3 .mega em,.v3 .big em,.v3 .feat-main h2 em,.v3 .pg-title em,.v3 .essay h2 em,.v3 .way h3 em{background:none;color:inherit;-webkit-text-fill-color:currentColor}
+
+/* ===== Menu : séparateur entre les deux mondes ===== */
+.v3 #menu .sep{width:1px;height:16px;background:#0000001F;margin:0 4px;align-self:center}
+@media (max-width:900px){.v3 #menu .sep{display:none}}
+
+/* ===== En-tête centré (toutes les pages intérieures) ===== */
+.ciel.hc{min-height:clamp(560px,84svh,820px)}
+.ciel.hc .ciel-txt{padding-top:calc(96px + 8vh);max-width:820px}
+.ciel.hc .mega{font-size:clamp(38px,5vw,70px)}
+.ciel.warm{background:linear-gradient(180deg,#F1CDB0 0%,#F5DDCB 36%,#F1ECE8 76%,#F4F4F6 100%)}
+.ciel.warm .cloud{filter:drop-shadow(0 18px 30px #C2906A26) sepia(.25) saturate(1.3) hue-rotate(-10deg)}
+.ciel .proofline{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:22px}
+.ciel .proofline span{font-size:13px;font-weight:600;color:var(--soft-ink);background:#FFFFFF80;padding:7px 12px;border-radius:99px}
+
+/* Éléments qui flottent autour du titre (réutilisent .isle de la v1 : suivent la souris et respirent) */
+.fl{position:absolute;pointer-events:none}
+.fl img{width:100%;height:auto;display:block}
+.fl.f1{left:4%;top:15%;width:clamp(90px,9vw,140px)}
+.fl.f2{left:8%;bottom:10%;width:clamp(110px,11vw,170px)}
+.fl.f3{right:4%;top:13%;width:clamp(90px,9vw,140px)}
+.fl.f4{right:7%;bottom:9%;width:clamp(120px,12vw,190px)}
+.fl.f5{left:19%;top:5%;width:clamp(56px,5vw,80px)}
+.fl.f6{right:20%;top:6%;width:clamp(56px,5vw,80px)}
+.fl.f7{left:22%;bottom:3%;width:clamp(60px,5.5vw,90px)}
+.fl.f8{right:24%;bottom:2%;width:clamp(60px,5.5vw,90px)}
+@media (max-width:1100px){.fl.f5,.fl.f6,.fl.f7,.fl.f8{display:none}}
+@media (max-width:760px){
+  .ciel.hc{min-height:auto}
+  .ciel.hc .ciel-txt{padding-top:calc(150px + 4vh);padding-bottom:170px}
+  .fl.f1{left:3%;top:72px;width:72px}.fl.f3{right:3%;top:76px;width:72px}
+  .fl.f2{left:4%;bottom:18px;width:92px}.fl.f4{right:4%;bottom:14px;width:100px}
+}
+
+/* ===== Accueil : îles avec leur étiquette, portes ===== */
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gut)}
+.door{position:relative;display:flex;flex-direction:column;gap:10px;min-height:340px;padding:clamp(24px,3vw,40px);border-radius:var(--rad);background:var(--tint);overflow:hidden;color:var(--ink)}
+.panel.open .door{background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D}
+.door.dark{background:var(--night)!important;color:#F2F2F4}
+.door .k{font-size:13px;font-weight:600;color:var(--mute)}
+.door.dark .k{color:#A9A9B2}
+.door h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.04em;line-height:1.05;margin:0;max-width:11em}
+.door ul{list-style:none;margin:auto 0 0;padding:0;display:grid;gap:8px;position:relative;z-index:2}
+.door li a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:16px;background:#0000000A;font-weight:600;font-size:15.5px;transition:background .2s}
+.door.dark li a{background:#FFFFFF14;color:#fff}
+.door li a:hover{background:#00000014}.door.dark li a:hover{background:#FFFFFF26}
+.door li a .i{width:15px;height:15px}
+.door > img{position:absolute;right:-10px;top:12px;width:clamp(130px,15vw,200px);height:auto;filter:drop-shadow(0 20px 26px #0003);animation:bob 5.5s ease-in-out infinite alternate}
+.door:hover > img{animation-duration:2.5s}
+
+/* ===== Gros chiffres (l'écart, les niveaux) ===== */
+.srcnote{margin-top:14px;font-size:13px;color:var(--mute)}
+
+/* ===== Cartes « avant → avec l'IA » ===== */
+.cases{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.cases li{position:relative;border-radius:24px;padding:22px 22px 24px;background:#fff;box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A;overflow:hidden}
+.panel:not(.open) .cases li{background:var(--tint);box-shadow:none}
+.cases img{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 10px 14px #0002);margin-bottom:10px;transition:transform .5s var(--ease)}
+.cases li:hover img{transform:rotate(-6deg) translateY(-3px)}
+.cases .svc{display:block;font-size:12.5px;font-weight:600;color:var(--mute);letter-spacing:.02em}
+.cases .av{display:block;margin-top:10px;font-size:14.5px;color:var(--mute);text-decoration:line-through;text-decoration-color:#0003}
+.cases .ap{display:block;margin-top:6px;font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.3}
+.cases .ap::before{content:"→ ";color:var(--acc)}
+
+/* ===== L'offre ===== */
+.offer{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--gut)}
+.offer .main{border-radius:var(--rad);padding:clamp(26px,3.4vw,44px);background:var(--night);color:#F2F2F4;position:relative;overflow:hidden}
+.offer .main h3{font-size:clamp(26px,2.8vw,38px);letter-spacing:-.04em;line-height:1.05;margin:6px 0 0;color:#fff}
+.offer .main .k{font-size:13px;font-weight:600;color:#A9A9B2}
+.offer .main .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:24px}
+.offer .main h4{font-size:13px;font-weight:600;color:var(--acc-l);margin:0 0 10px;letter-spacing:.02em}
+.offer .main ul{margin:0;padding-left:18px;display:grid;gap:7px;font-size:15px;line-height:1.45;color:#D6D6DC}
+.offer .main > img{position:absolute;right:-6px;top:-6px;width:clamp(110px,12vw,160px);filter:drop-shadow(0 18px 24px #0008);animation:bob 5s ease-in-out infinite alternate}
+.offer .side{display:grid;gap:var(--gut)}
+.offer .omini{position:relative;border-radius:24px;padding:24px;background:#fff;box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.panel:not(.open) .offer .omini{background:var(--tint);box-shadow:none}
+.offer .omini .k{font-size:12.5px;font-weight:600;color:var(--mute)}
+.offer .omini h4{font-size:20px;letter-spacing:-.03em;margin:0;color:var(--ink)}
+.offer .omini p{margin:0;font-size:15px;line-height:1.5;color:var(--soft-ink);max-width:22em}
+.offer .omini a{margin-top:auto;font-weight:600;font-size:15px}
+.offer .omini img{position:absolute;right:10px;bottom:10px;width:64px;filter:drop-shadow(0 10px 14px #0002)}
+.guar{list-style:none;margin:var(--gut) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.guar li{border-radius:22px;padding:20px 22px;background:var(--acc-t);border:1px solid #2E5E8C26}
+.guar b{display:block;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
+.guar span{display:block;margin-top:6px;font-size:14.5px;line-height:1.5;color:var(--soft-ink)}
+
+/* ===== Petites pastilles (rassurer, ce que je construis) ===== */
+.chips3{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chips3 span{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:99px;background:#fff;font-weight:600;font-size:15px;color:var(--ink);box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A}
+.chips3 span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc-l)}
+
+/* ===== Projets (Construire un produit) ===== */
+.builds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.build{display:flex;flex-direction:column;border-radius:var(--rad);overflow:hidden;background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;color:var(--ink);transition:transform .5s var(--ease)}
+.build:hover{transform:translateY(-4px)}
+.build .im{aspect-ratio:4/3;overflow:hidden;background:var(--tint)}
+.build .im img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.build:hover .im img{transform:scale(1.04)}
+.build .tx{padding:20px 22px 24px}
+.build .big2{display:block;font-size:clamp(30px,3vw,40px);font-weight:700;letter-spacing:-.05em;line-height:1}
+.build h3{margin:10px 0 0;font-size:18px;letter-spacing:-.025em}
+.build p{margin:6px 0 0;font-size:14.5px;line-height:1.5;color:var(--soft-ink)}
+
+/* ===== Méthode en 4 (Construire un produit) ===== */
+
+/* ===== Récit (À propos) ===== */
+.eight{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gut);counter-reset:e}
+.eight li{border-radius:22px;padding:20px;background:#fff;box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A;counter-increment:e}
+.panel:not(.open) .eight li{background:var(--tint);box-shadow:none}
+.eight li::before{content:counter(e,decimal-leading-zero);display:block;font-size:12.5px;font-weight:700;color:var(--mute);margin-bottom:8px}
+.eight b{display:block;font-size:16.5px;letter-spacing:-.02em;line-height:1.25}
+.eight span{display:block;margin-top:6px;font-size:13.5px;color:var(--mute)}
+.lesson{margin:clamp(24px,3vw,36px) auto 0;max-width:30em;text-align:center;font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-.03em;line-height:1.25;color:var(--ink)}
+.lesson small{display:block;margin-top:10px;font-size:13.5px;font-weight:500;color:var(--mute);letter-spacing:0}
+
+/* ===== Trois cartes avec objet (aujourd'hui, convictions) ===== */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.trio > *{position:relative;display:flex;flex-direction:column;gap:8px;border-radius:var(--rad);padding:clamp(22px,2.6vw,32px);background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;color:var(--ink);overflow:hidden;min-height:230px}
+.panel:not(.open) .trio > *{background:var(--tint);box-shadow:none}
+.trio img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 12px 16px #0002)}
+.trio .k{font-size:12.5px;font-weight:600;color:var(--mute)}
+.trio h3{margin:0;font-size:21px;letter-spacing:-.03em;line-height:1.15}
+.trio p{margin:0;font-size:15px;line-height:1.5;color:var(--soft-ink)}
+.trio .lnk{margin-top:auto;font-weight:600;font-size:15px}
+.trio > a:hover{transform:translateY(-3px)}
+.trio a{transition:transform .5s var(--ease)}
+
+/* ===== Fin « de nuit » renforcée ===== */
+.nuit.v3n .nuit-max{width:clamp(160px,15vw,230px)}
+.nuit.v3n .fl{opacity:.95}
+.nuit.v3n .fl img{filter:drop-shadow(0 16px 26px #0009)}
+.nuit.v3n .shoot{position:absolute;top:14%;left:-10%;width:120px;height:2px;background:linear-gradient(90deg,#fff0,#fff);border-radius:2px;opacity:0;transform:rotate(-14deg);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.nuit.v3n .shoot{animation:shoot 9s ease-in 2s infinite}}
+@keyframes shoot{0%{opacity:0;translate:0 0}3%{opacity:1}12%{opacity:0;translate:70vw 18vh}100%{opacity:0;translate:70vw 18vh}}
+.nuit.v3n .cta .btn.white{height:56px;padding:0 30px;font-size:16.5px;box-shadow:0 0 0 0 #FFFFFF66}
+@media (prefers-reduced-motion:no-preference){.nuit.v3n .cta .btn.white{animation:halo 2.6s ease-out infinite}}
+@keyframes halo{0%{box-shadow:0 0 0 0 #FFFFFF55}70%{box-shadow:0 0 0 18px #FFFFFF00}100%{box-shadow:0 0 0 0 #FFFFFF00}}
+.nuit.v3n .rdv{margin-top:34px}
+
+/* ===== Pied de page noir ===== */
+.v3-foot{margin:var(--gut);border-radius:var(--rad);background:var(--night);color:#A9A9B2;padding:clamp(36px,5vw,64px) clamp(20px,5.5vw,80px) 24px}
+.v3-foot .cols{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:28px;max-width:1100px;margin:0 auto}
+.v3-foot .brand b{display:flex;align-items:center;gap:10px;color:#fff;font-size:17px;letter-spacing:-.02em}
+.v3-foot .brand img{width:30px;height:30px;border-radius:50%}
+.v3-foot .brand p{margin:12px 0 18px;font-size:14.5px;line-height:1.5;max-width:22em}
+.v3-foot h3{font-size:12.5px;font-weight:600;color:#fff;margin:4px 0 12px;letter-spacing:.02em}
+.v3-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px}
+.v3-foot a{color:#C9C9D1}
+.v3-foot a:hover,.v3-foot a:focus-visible{color:#fff}
+.v3-foot .sel{user-select:all;color:#C9C9D1}
+.v3-foot .bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;max-width:1100px;margin:36px auto 0;padding-top:18px;border-top:1px solid #FFFFFF1A;font-size:13px}
+
+/* ===== Prendre rendez-vous ===== */
+.rdvbox{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--gut);align-items:start}
+.rdvside{position:sticky;top:96px;display:grid;gap:var(--gut)}
+.rdvside .card{border-radius:24px;padding:24px;background:#fff;box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A}
+.rdvside h3{margin:0 0 12px;font-size:19px;letter-spacing:-.025em}
+.steps3n{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps3n li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;font-size:15px;line-height:1.5;color:var(--soft-ink)}
+.steps3n li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
+.steps3n b{color:var(--ink)}
+.who2{display:flex;gap:14px;align-items:center}
+.who2 img{width:54px;height:54px;border-radius:50%;object-fit:cover}
+.who2 b{display:block;font-size:16px}
+.who2 span{font-size:14px;color:var(--mute)}
+.calbox{border-radius:var(--rad);background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;overflow:hidden;min-height:0}
+.calbox #cal-inline{width:100%;min-height:640px}
+.calbox .wait{padding:clamp(24px,3vw,40px);display:grid;gap:12px;justify-items:center;text-align:center}
+.calbox .wait img{width:180px;height:auto;filter:drop-shadow(0 18px 24px #0002)}
+.calbox .wait h3{margin:0;font-size:22px;letter-spacing:-.03em}
+.calbox .wait p{margin:0;color:var(--soft-ink)}
+
+/* ===== Formulaire de mini-analyse dans la nuit ===== */
+.nuit .rdv.lf{margin-inline:auto;text-align:left}
+
+/* ===== Téléphone ===== */
+@media (max-width:900px){
+  .doors,.gap2,.offer,.rdvbox{grid-template-columns:minmax(0,1fr)}
+  .cases,.builds,.trio,.guar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .v3-foot .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rdvside{position:static}
+}
+@media (max-width:640px){
+  .cases,.builds,.trio,.guar,.lv3,.meth4{grid-template-columns:minmax(0,1fr)}
+  .eight{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .offer .main .cols{grid-template-columns:minmax(0,1fr)}
+  .v3-foot .cols{grid-template-columns:minmax(0,1fr)}
+  .door{min-height:0}
+  .door > img{width:110px}
+  .door h3{max-width:9em}
+}
+@media (prefers-reduced-motion:reduce){.door > img,.offer .main > img,.dusk .dusk-max{animation:none}}
+
+/* ===== En-tête court (rendez-vous, blog, exemples) ===== */
+.ciel.hs{min-height:0}
+.ciel.hs .ciel-txt{padding-top:calc(100px + 5vh);padding-bottom:clamp(56px,7vw,96px)}
+.ciel.hs .mega{font-size:clamp(34px,4.4vw,60px)}
+@media (max-width:760px){.ciel.hs .ciel-txt{padding-top:150px;padding-bottom:120px}}
+
+/* ===== Repère « brouillon » ===== */
+.v3-draft{position:fixed;left:12px;bottom:12px;z-index:60;margin:0;padding:6px 10px;border-radius:99px;background:#111113E6;color:#fff;font-size:12px;font-weight:600;pointer-events:none}
+
+/* ===== Exemple de mini-analyse ===== */
+.doc{max-width:760px;margin:0 auto;border-radius:var(--rad);background:#fff;box-shadow:0 1px 0 #0000000A,0 10px 30px #0000000F;padding:clamp(24px,4vw,52px)}
+.doc .stamp{display:inline-block;padding:6px 12px;border-radius:99px;background:#FFF4D6;color:#7A5200;font-size:13px;font-weight:700}
+.doc h2{margin:16px 0 4px;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.035em}
+.doc .meta2{margin:0;color:var(--mute);font-size:14.5px}
+.doc h3{margin:28px 0 10px;font-size:17px;letter-spacing:-.02em}
+.doc table{width:100%;border-collapse:collapse;font-size:14.5px}
+.doc th,.doc td{text-align:left;padding:12px 10px;border-bottom:1px solid #0000000F;vertical-align:top}
+.doc th{font-size:12.5px;color:var(--mute);font-weight:600}
+.doc td b{color:var(--ink)}
+.doc .tot{margin-top:18px;padding:16px 18px;border-radius:18px;background:var(--acc-t);border:1px solid #2E5E8C26;font-size:15px}
+.doc p,.doc li{font-size:15px;line-height:1.55;color:var(--soft-ink)}
+@media (max-width:640px){.doc table,.doc thead,.doc tbody,.doc tr,.doc td{display:block}.doc thead{display:none}.doc tr{padding:10px 0;border-bottom:1px solid #0000000F}.doc td{border:0;padding:3px 0}}
+.vision .chips3{justify-content:flex-start;margin-top:22px}
+.isles.duo .fl{width:clamp(56px,5vw,84px)}
+.nuit.v3n .fl.f2{left:6%;bottom:10%;width:clamp(70px,7vw,110px)}
+.nuit.v3n .fl.f5{left:10%;top:14%}
+@media (max-width:760px){.nuit.v3n .fl{display:none}}
+.nuit .rdv-wrap{margin-top:34px}
+/* Portes : l'objet reste dans son coin, le titre ne passe jamais dessous */
+.door > img{top:18px;right:18px;width:clamp(96px,10vw,140px)}
+.door .k,.door h3{padding-right:clamp(100px,11vw,150px)}
+.door h3{max-width:none;font-size:clamp(24px,2.3vw,32px)}
+@media (max-width:640px){.door > img{width:84px;top:14px;right:12px}.door .k,.door h3{padding-right:88px}.door h3{font-size:24px}}
+.fl.f5,.fl.f6{top:17%}
+/* Tablette : les deux îles passent sous le titre, rien ne recouvre la pastille Malt */
+@media (min-width:641px) and (max-width:1100px){
+  .isles.duo .j1{top:auto;bottom:7%}
+  .ciel .c1{top:9%;bottom:auto}
+}
+/* Téléphone : captures plus petites, au-dessus du titre ; étiquettes des îles entières */
+@media (max-width:760px){
+}
+@media (max-width:640px){
+  .isles.duo .j1{left:6%}.isles.duo .j2{right:6%}
+  .isle .tag{font-size:10.5px;padding:4px 8px}
+}
+/* Accueil : le titre tient toujours sur 3 lignes (taille calculée sur la largeur du bloc de texte) */
+.ciel-txt:has(.t3l){container-type:inline-size;width:100%;box-sizing:border-box}
+@supports (font-size:1cqi){.ciel-txt .mega.t3l{font-size:min(9.4cqi,78px)}}
+
+/* =====================================================================
+   Retours de Tom (7 nov., soir) : plus de vert, sections plus visuelles,
+   visuels en éventail sous le titre, appel final dans un ciel clair
+   ===================================================================== */
+
+/* ----- L'écart : une seule barre, trois parts ----- */
+.gapbar{max-width:980px;margin:0 auto;border-radius:var(--rad);background:#fff;box-shadow:0 1px 0 #0000000A,0 10px 30px #0000000D;padding:clamp(22px,3.4vw,44px)}
+.gb-track{display:flex;height:clamp(64px,7vw,92px);border-radius:22px;overflow:hidden;background:var(--tint)}
+.gb{display:flex;align-items:center;padding:0 clamp(12px,1.6vw,22px);min-width:0;transition:flex-basis 1.4s var(--ease)}
+.gb b{font-size:clamp(20px,2.4vw,32px);letter-spacing:-.04em;white-space:nowrap}
+.gb.gb-a{flex:0 0 17%;background:var(--night);color:#fff}
+.gb.gb-b{flex:0 0 60%;color:#fff;background:linear-gradient(100deg,#5F8DB8,#2E5E8C)}
+.gb.gb-c{flex:1 1 auto;color:var(--mute)}
+.js:not(.rv) .gapbar:not(.in) .gb.gb-a,.js:not(.rv) .gapbar:not(.in) .gb.gb-b{flex-basis:0}
+.gb-leg{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:17fr 60fr 23fr;gap:14px}
+.gb-leg li{position:relative;padding-top:14px;border-top:3px solid var(--tint);font-size:14.5px;line-height:1.45;color:var(--soft-ink)}
+.gb-leg li.gb-a{border-color:var(--night)}.gb-leg li.gb-b{border-color:#4F7FAD}
+.gb-leg b{display:block;font-size:16px;color:var(--ink);letter-spacing:-.02em;margin-bottom:3px}
+.gb-leg strong{color:var(--acc)}
+.gapbar .srcnote{margin-top:20px}
+@media (max-width:760px){
+  .gb-leg{grid-template-columns:minmax(0,1fr)}
+  .gb.gb-a{padding:0 8px}.gb.gb-a b{font-size:17px}
+}
+
+/* ----- Le gain : un escalier ----- */
+.stairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut);align-items:end;max-width:1000px;margin:clamp(36px,5vw,64px) auto 0}
+.stp{position:relative;display:flex;flex-direction:column;justify-content:flex-end;border-radius:var(--rad);background:var(--tint);padding:clamp(20px,2.4vw,30px);padding-top:70px}
+.stp img{position:absolute;top:-44px;left:clamp(16px,2vw,26px);width:clamp(76px,7vw,100px);filter:drop-shadow(0 14px 18px #0002);animation:bob 5s ease-in-out infinite alternate}
+.stp-b img{animation-delay:-1.6s}.stp-c img{animation-delay:-3.1s}
+.stp-a{min-height:210px}.stp-b{min-height:290px}.stp-c{min-height:380px;background:var(--night);color:#F2F2F4}
+.stp .lvl{margin:0;font-size:12.5px;font-weight:600;color:var(--mute)}
+.stp-c .lvl{color:var(--acc-l)}
+.stp b{display:block;margin-top:6px;font-size:clamp(40px,5vw,68px);letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.stp-c b{color:#fff}
+.stp span{display:block;margin-top:10px;font-size:15px;line-height:1.45;color:var(--soft-ink)}
+.stp-c span{color:#C9C9D1}
+.stp-c::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 60% at 50% 0%,#5F8DB833,#0000 70%);pointer-events:none}
+@media (max-width:640px){
+  .stairs{grid-template-columns:minmax(0,1fr);gap:44px}
+  .stp-a,.stp-b,.stp-c{min-height:0}
+}
+
+/* ----- Cas concrets : avant / avec l'IA, sans barré ----- */
+.cases li{display:flex;flex-direction:column;gap:12px}
+.cases .ch{display:flex;align-items:center;gap:12px}
+.cases .ch img{width:52px;height:52px;margin:0}
+.cases .svc{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.015em}
+.cases .av,.cases .ap{margin:0;font-size:15px;line-height:1.45}
+.cases .av{padding:12px 14px;border-radius:14px;background:var(--tint);color:var(--mute)}
+.panel:not(.open) .cases li{background:#fff;box-shadow:0 1px 0 #0000000A,0 6px 18px #0000000A;border:1px solid #0000000A}
+.panel:not(.open) .cases .av{background:var(--tint)}
+.cases .ap{padding:2px 0 0 14px;border-left:3px solid #5F8DB8;font-weight:600;color:var(--ink);font-size:16px}
+.cases .ap::before{content:none}
+.cases small{display:block;margin-bottom:3px;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.cases .ap small{color:var(--acc)}
+
+/* ----- Garanties : un sceau, pas de vert ----- */
+.guar li{position:relative;background:#fff;border:1px solid #0000000F;box-shadow:0 6px 18px #0000000A;padding:22px 22px 22px 70px}
+.guar .seal{position:absolute;left:20px;top:20px;width:36px;height:36px;border-radius:50%;background:var(--night);color:#fff;display:grid;place-items:center}
+.guar .seal .i{width:16px;height:16px}
+.offer .main h4{color:var(--acc-l)}
+.chips3 span::before{background:#5F8DB8}
+
+/* ----- Besoins (Construire un produit) ----- */
+.needs{list-style:none;margin:0 0 clamp(28px,4vw,48px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.needs li{position:relative;border-radius:24px;padding:24px 24px 26px;background:var(--tint);overflow:hidden}
+.needs img{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 10px 14px #0002);transition:transform .5s var(--ease)}
+.needs li:hover img{transform:rotate(-6deg) translateY(-3px)}
+.needs h3{margin:12px 0 0;font-size:19px;letter-spacing:-.025em}
+.needs p{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--soft-ink)}
+.builds.b4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.builds.b4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.needs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.needs,.builds.b4{grid-template-columns:minmax(0,1fr)}}
+
+/* ----- Éventail de visuels sous le titre ----- */
+.ciel.hasfan{min-height:0}
+.ciel.hasfan .ciel-txt{flex:0 0 auto;padding-bottom:0}
+.fanr{position:relative;z-index:1;height:clamp(250px,27vw,400px);margin-top:clamp(30px,4vw,52px);overflow:hidden;pointer-events:none;
+  --W:clamp(150px,14.5vw,226px);--s:clamp(118px,13.5vw,212px)}
+.fanr-i{position:absolute;left:50%;top:var(--t);width:var(--w);translate:calc(-50% + var(--x)) var(--dy,0px);rotate:var(--r);transition:translate .9s var(--ease)}
+.fanr-i > *{display:block;animation:bob 6s ease-in-out infinite alternate}
+.fanr .fa1{--x:calc(var(--s) * -2);--r:-13deg;--t:30%;--w:calc(var(--W) * .84);z-index:1}
+.fanr .fa2{--x:calc(var(--s) * -1);--r:-6deg;--t:13%;--w:calc(var(--W) * .93);z-index:2}
+.fanr .fa3{--x:0px;--r:0deg;--t:2%;--w:var(--W);z-index:3}
+.fanr .fa4{--x:var(--s);--r:6deg;--t:13%;--w:calc(var(--W) * .93);z-index:2}
+.fanr .fa5{--x:calc(var(--s) * 2);--r:13deg;--t:30%;--w:calc(var(--W) * .84);z-index:1}
+.fanr .fa2 > *{animation-delay:-1.5s}.fanr .fa4 > *{animation-delay:-3s}.fanr .fa1 > *,.fanr .fa5 > *{animation-delay:-4.5s}
+.fanr .fa3.fwide{--w:clamp(280px,31vw,480px);--t:8%}
+.phn{border-radius:clamp(22px,2.3vw,34px);background:#0E0E10;padding:clamp(5px,.5vw,8px);box-shadow:0 30px 50px #1D2A3A40}
+.phn img{display:block;width:100%;height:auto;border-radius:clamp(17px,1.8vw,27px)}
+.phn.bare{background:none;padding:0;box-shadow:none;filter:drop-shadow(0 30px 34px #1D2A3A40)}
+.phn.bare img{border-radius:0}
+.vid{border-radius:clamp(16px,1.6vw,24px);overflow:hidden;background:#000;box-shadow:0 30px 50px #1D2A3A55;border:6px solid #0E0E10}
+.vid video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+@media (max-width:640px){
+  .fanr{height:230px;margin-top:30px;--W:124px;--s:96px}
+  .fanr .fa1,.fanr .fa5{display:none}
+  .fanr .fa3.fwide{--w:270px;--t:14%}
+  .ciel.hc.hasfan .ciel-txt{padding-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){.fanr-i > *,.stp img{animation:none}}
+
+/* ----- Appel final « fin de journée » : un ciel clair, des nuages, MAX ----- */
+.dusk{overflow:clip;text-align:center;background:linear-gradient(180deg,#B9D2E6 0%,#D4E2EE 45%,#EDEAE8 100%)!important}
+.dusk .mw{position:relative;z-index:2}
+.dusk .dusk-max{width:clamp(130px,12vw,180px);margin:0 auto 8px;animation:bob 3.2s ease-in-out infinite alternate}
+.dusk .dusk-max img{width:100%;height:auto;filter:drop-shadow(0 22px 28px #2A3A5040)}
+.dusk .big{margin-inline:auto;max-width:16em}
+.dusk .lead{margin-inline:auto;color:var(--soft-ink)}
+.dusk .cta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+.dusk .dc{z-index:1;pointer-events:none}
+.dusk .d1{left:4%;top:16%;width:min(16vw,220px)}
+.dusk .d2{right:5%;top:30%;width:min(13vw,180px);animation-duration:30s}
+.dusk .d3{left:16%;bottom:10%;width:min(8vw,110px);opacity:.9;animation-duration:24s}
+@media (max-width:640px){.dusk .d1{left:-6%;top:6%;width:120px}.dusk .d2{right:-8%;top:auto;bottom:6%;width:120px}.dusk .d3{display:none}}
+.fanr:has(.fwide){--s:clamp(175px,19.5vw,300px)}
+@media (max-width:640px){.fanr:has(.fwide){--s:118px}}
+.fanr{-webkit-mask-image:linear-gradient(180deg,#000 62%,#0000 100%);mask-image:linear-gradient(180deg,#000 62%,#0000 100%)}
+.cases .av{text-decoration:none}
+/* Offre et livrable : le texte ne passe jamais sous l'objet */
+.offer .main h3,.offer .main .k{padding-right:clamp(100px,11vw,150px)}
+.offer .omini h4,.offer .omini p{padding-right:66px}
+@media (max-width:640px){.ciel.hc .mega{font-size:clamp(30px,8.6vw,36px)}}
+@media (max-width:760px){.gb.gb-a b{display:none}}
+
+/* ===== Corrections après le challenge (7 nov.) ===== */
+.gb{overflow:hidden}
+@media (max-width:1100px){.nuit.v3n .fl{display:none}}
+/* Accueil : boussole et chrono restent hors du bloc de texte */
+@media (min-width:1101px){.isles.duo .fl.f5{left:auto;right:calc(50% + 410px)}.isles.duo .fl.f6{right:auto;left:calc(50% + 410px)}}
+.offer .main > img{width:clamp(96px,9vw,130px)}
+.offer .omini a{padding-right:70px}
+.dusk .btn.white{box-shadow:0 0 0 1px #0000001A,0 8px 20px #2A3A5014}
+/* Plus de vert dans le formulaire */
+.v3 .rdv-status.ok{background:#A9CBEA26;color:#D6E7F6}
+.v3 .lf-steps li.done{color:#D6E7F6;border-color:#A9CBEA}
+.cases small{font-size:12px}
+/* Pages intérieures : les deux petits objets du haut restent hors du bloc de texte */
+@media (min-width:1101px){.ciel.hc .isles:not(.duo) .fl.f5{left:auto;right:calc(50% + 430px)}.ciel.hc .isles:not(.duo) .fl.f6{right:auto;left:calc(50% + 430px)}}
+/* Appel final : nuages dans les coins, jamais derrière le titre */
+.dusk .d1{left:2%;top:8%}.dusk .d2{right:2%;top:auto;bottom:10%}.dusk .d3{left:4%;bottom:6%;width:min(7vw,90px)}
+@media (max-width:1000px){.dusk .d3{display:none}}
+@media (max-width:640px){.dusk .d1{left:-40px;top:-14px;width:110px}.dusk .d2{right:-40px;bottom:-10px;width:110px}}
+@media (max-width:640px){.dusk .d2{display:none}}
+
+/* =====================================================================
+   Retours de Tom (8 nov.) : accueil, objets aimantés, sections refaites
+   ===================================================================== */
+
+/* ----- Objets : ils ne suivent plus tous la souris ; seul l'objet approché vient vers elle (assets-v3/v3.js) ----- */
+.magnet .isle{translate:var(--ax,0px) calc(var(--ay,0px) + var(--dy,0px));transition:translate .7s var(--ease)}
+.magnet .fl:not(.isle),.magnet .dusk .dusk-max{translate:var(--ax,0px) var(--ay,0px);transition:translate .7s var(--ease)}
+.magnet .nuit .moon{translate:var(--ax,0px) calc(var(--ay,0px) + var(--dy,0px));transition:translate .7s var(--ease)}
+
+/* ----- Pied de page : le bouton blanc garde son texte au survol ----- */
+.v3-foot a.btn.white,.v3-foot a.btn.white:hover,.v3-foot a.btn.white:focus-visible{color:var(--ink)}
+.v3-foot a.btn.white:hover{background:#ECECEF}
+.v3 .btn.white:hover{color:var(--ink)}
+
+/* ----- Accueil : les deux portes, même hauteur, titre sur 2 lignes ----- */
+.doors{align-items:stretch}
+.door{min-height:0;gap:0;padding:clamp(22px,2.6vw,34px)}
+.door .door-top{display:flex;align-items:center;gap:14px}
+.door .door-ic{flex:0 0 auto;width:62px;height:62px;border-radius:18px;background:linear-gradient(160deg,#DCE7F1,#F4F6F9);display:grid;place-items:center;box-shadow:inset 0 0 0 1px #0000000A}
+.door.dark .door-ic{background:linear-gradient(160deg,#2A2A33,#17171C);box-shadow:inset 0 0 0 1px #FFFFFF14}
+.door .door-ic img{width:54px;height:54px;object-fit:contain;filter:drop-shadow(0 6px 8px #0003);transition:transform .5s var(--ease)}
+.door:hover .door-ic img{transform:translateY(-3px) rotate(-4deg) scale(1.06)}
+.door .k,.door h3{padding-right:0}
+.door .k{font-size:14px;color:var(--ink);font-weight:700;letter-spacing:-.01em}
+.door.dark .k{color:#fff}
+.door h3{margin:22px 0 0;font-size:clamp(23px,2.05vw,29px);line-height:1.12;max-width:none;text-wrap:balance}
+.door .door-tx{margin:10px 0 24px;font-size:15.5px;line-height:1.5;color:var(--soft-ink);max-width:30em}
+.door.dark .door-tx{color:#B9B9C2}
+@media (max-width:640px){.door .k,.door h3{padding-right:0}.door h3{font-size:23px}.door .door-ic{width:54px;height:54px;border-radius:16px}.door .door-ic img{width:46px;height:46px}}
+
+/* ----- Accueil : résultats, cartes blanches cliquables ----- */
+.proofs.pl li{padding:0;background:none}
+.proofs.pl a{display:block;height:100%;padding:20px 22px;border-radius:22px;background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;color:var(--ink);transition:transform .45s var(--ease),box-shadow .3s}
+.proofs.pl a:hover{transform:translateY(-3px);box-shadow:0 1px 0 #0000000A,0 14px 30px #00000014}
+.proofs.pl small{display:flex;align-items:center;gap:8px;margin-top:14px;padding:0;background:none;font-size:13px;font-weight:600;color:var(--ink)}
+.proofs.pl .pic{flex:0 0 auto;width:28px;height:28px;border-radius:8px;overflow:hidden;background:var(--tint);box-shadow:0 0 0 1px #0000000F}
+.proofs.pl .pic img{width:100%;height:100%;object-fit:cover}
+.proofs.pl .pic.pt img{object-position:50% 0}
+.proofs.pl .arr{margin-left:auto;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--tint);transition:background .2s,color .2s}
+.proofs.pl .arr .i{width:12px;height:12px}
+.proofs.pl a:hover .arr{background:var(--ink);color:#fff}
+
+/* ----- Intégrer l'IA : carrousel des services ----- */
+.svc-wrap{margin-top:clamp(28px,4vw,48px)}
+.rail{list-style:none;margin:0;padding:6px 2px 18px;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,21vw,250px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.rail li{scroll-snap-align:start;border-radius:24px;background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;padding:10px 10px 20px;transition:transform .45s var(--ease)}
+.rail li:hover{transform:translateY(-4px)}
+.rail .sv-im{height:150px;border-radius:18px;background:radial-gradient(90% 80% at 50% 30%,#FFFFFFB0,#FFFFFF00 70%),var(--bg,#DCE7F1);display:grid;place-items:center;overflow:hidden}
+.rail .sv-im img{width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 14px 16px #0000002E);transition:transform .6s var(--ease)}
+.rail li:hover .sv-im img{transform:translateY(-6px) rotate(-5deg) scale(1.06)}
+.rail h3{margin:16px 12px 0;font-size:17px;letter-spacing:-.025em;line-height:1.2}
+.rail p{margin:6px 12px 0;font-size:14.5px;line-height:1.45;color:var(--soft-ink)}
+.rail-nav{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.rail-nav button{width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);box-shadow:0 1px 0 #0000000A,0 6px 16px #0000000F;display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,opacity .2s}
+.rail-nav button:hover:not(:disabled){background:var(--ink);color:#fff}
+.rail-nav button:disabled{opacity:.35;cursor:default}
+.rail-nav .i{width:15px;height:15px}
+.panel:not(.open) .rail li,.panel:not(.open) .rail-nav button{box-shadow:0 0 0 1px #0000000D,0 6px 16px #0000000A}
+
+/* ----- Pourquoi moi : quelques projets en pastilles ----- */
+.minilogos{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.minilogos a{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:99px;background:#fff;box-shadow:0 0 0 1px #0000000F;font-size:13.5px;font-weight:600;color:var(--ink);transition:transform .3s var(--ease),box-shadow .3s}
+.minilogos a:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #0000001A,0 6px 14px #0000000F}
+.minilogos .pic{width:24px;height:24px;border-radius:7px;overflow:hidden;background:var(--tint)}
+.minilogos .pic img{width:100%;height:100%;object-fit:cover}
+.minilogos .pic.pt img{object-position:50% 0}
+.panel:not(.open) .cond div{background:#fff;box-shadow:0 0 0 1px #0000000D}
+
+/* ----- L'offre : un bento court, sans texte bleu ----- */
+.bento{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:auto auto;gap:var(--gut)}
+.bx{position:relative;border-radius:var(--rad);padding:clamp(22px,2.8vw,36px);background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;color:var(--ink);overflow:hidden}
+.bx h3{margin:0;font-size:clamp(22px,2vw,28px);letter-spacing:-.04em;line-height:1.1}
+.bx p{margin:8px 0 0;font-size:15.5px;line-height:1.5;color:var(--soft-ink)}
+.bx-main{grid-row:span 2;background:var(--night);color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:340px}
+.bx-main h3{font-size:clamp(30px,3.3vw,46px);color:#fff;padding-right:clamp(90px,10vw,140px)}
+.bx-main p{color:#C9C9D1;font-size:17px;max-width:24em}
+.bx-obj{position:absolute;right:clamp(14px,2vw,28px);top:clamp(14px,2vw,26px);width:clamp(90px,9vw,130px);filter:drop-shadow(0 18px 24px #0008);animation:bob 5s ease-in-out infinite alternate}
+.bx-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.bx-steps li{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:18px;background:#FFFFFF12;font-weight:600;font-size:15px}
+.bx-steps span{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:12.5px;font-weight:700}
+.bx-keep ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.bx-keep li{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:500;color:var(--ink)}
+.bx-keep li::before{content:"";flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--night) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
+.bento{grid-template-columns:minmax(0,1.35fr) minmax(0,.55fr) minmax(0,.55fr)}
+.bx-keep{grid-column:2 / span 2}
+.bx-small{display:flex;flex-direction:column;gap:2px;transition:transform .45s var(--ease)}
+.bx-small:hover{transform:translateY(-3px)}
+.bx-small img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 10px 12px #0002);margin-bottom:10px}
+.bx-small h3{font-size:18px;letter-spacing:-.025em}
+.bx-small p{font-size:14.5px;margin-top:4px}
+.bx-small .lnk{margin-top:auto;padding-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600}
+.bx-small .lnk .i{width:12px;height:12px}
+.panel:not(.open) .bx:not(.bx-main){box-shadow:0 0 0 1px #0000000D,0 6px 16px #0000000A}
+.srcnote.center{text-align:center}
+@media (max-width:1000px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bx-main{grid-column:1 / -1;grid-row:auto;min-height:0}
+  .bx-keep{grid-column:1 / -1}
+}
+@media (max-width:640px){
+  .bento{grid-template-columns:minmax(0,1fr)}
+  .bx-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bx-main h3{padding-right:84px}.bx-obj{width:80px}
+}
+@media (prefers-reduced-motion:reduce){.bx-obj{animation:none}}
+.guar b{font-size:16.5px}
+.bx-small{padding:22px}
+.bx-small h3{font-size:17px}
+
+/* ----- Produit : les écrans entiers, posés sous le titre, avec de l'espace en bas ----- */
+.ciel.hasfan{padding-bottom:clamp(44px,6vw,84px)}
+.fanr{--W:clamp(128px,12.4vw,198px);--s:clamp(108px,11.6vw,184px);height:calc(var(--W) * 2.3);overflow:visible;-webkit-mask-image:none;mask-image:none;margin-top:clamp(36px,4.6vw,60px)}
+.fanr .fa1,.fanr .fa5{--t:calc(var(--W) * .36)}
+.fanr .fa2,.fanr .fa4{--t:calc(var(--W) * .15)}
+.fanr .fa3{--t:0px}
+.fanr::after{content:"";position:absolute;left:50%;bottom:calc(var(--W) * -.12);width:min(86%,980px);height:calc(var(--W) * .28);translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,#2A3A5030,#2A3A5000);z-index:0}
+.phn{box-shadow:0 24px 40px #1D2A3A33,0 0 0 1px #FFFFFF22 inset}
+@media (max-width:640px){
+  .fanr{--W:118px;--s:92px;margin-top:30px}
+  .ciel.hasfan{padding-bottom:40px}
+}
+
+/* ----- Produit : les preuves, cartes plus soignées ----- */
+.build.bp{padding:10px;border-radius:28px}
+.build.bp .im{position:relative;border-radius:20px;aspect-ratio:5/4}
+.build.bp .big2{position:absolute;left:12px;bottom:12px;padding:8px 14px;border-radius:99px;background:#FFFFFFE8;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:clamp(17px,1.5vw,21px);letter-spacing:-.035em;color:var(--ink);box-shadow:0 6px 16px #0000001F}
+.build.bp .tx{padding:16px 12px 10px;display:flex;flex-direction:column;flex:1}
+.build.bp h3{margin:0;font-size:18px}
+.build.bp p{margin:6px 0 0}
+.build.bp .lnk{margin-top:auto;padding-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600}
+.build.bp .lnk .i{width:12px;height:12px;transition:transform .3s var(--ease)}
+.build.bp:hover .lnk .i{transform:translate(2px,-2px)}
+
+/* ----- Produit : ce que vous recevez ----- */
+.gets{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.gets li{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:16px;align-items:center;padding:20px 22px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px #0000000D,0 6px 16px #0000000A}
+.gets img{grid-row:span 2;width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 8px 10px #0002)}
+.gets h3{margin:0;font-size:17px;letter-spacing:-.025em;align-self:end}
+.gets p{margin:3px 0 0;font-size:14.5px;line-height:1.45;color:var(--soft-ink);align-self:start}
+.gets-more{margin-top:var(--gut);display:flex;align-items:center;gap:18px;padding:16px 22px;border-radius:24px;background:var(--night);color:#fff;transition:transform .45s var(--ease)}
+.gets-more:hover{transform:translateY(-2px)}
+.gets-more img{width:76px;height:auto;filter:drop-shadow(0 8px 12px #0006)}
+.gets-more b{display:block;font-size:17px;letter-spacing:-.02em}
+.gets-more span{font-size:14.5px;color:#C9C9D1}
+.gets-more .lnk{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:99px;background:#fff;color:var(--ink);font-weight:600;white-space:nowrap}
+.gets-more .lnk .i{width:12px;height:12px}
+@media (max-width:900px){.gets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.gets{grid-template-columns:minmax(0,1fr)}.gets-more{flex-wrap:wrap}.gets-more .lnk{margin-left:0}}
+.build.bp .big2{white-space:nowrap;font-size:clamp(15px,1.25vw,19px)}
+
+/* ----- À propos : les huit projets, avec leur image et un lien ----- */
+.eight li{padding:0;background:none;box-shadow:none}
+.eight li::before{content:none}
+.eight a{position:relative;display:flex;flex-direction:column;height:100%;padding:18px;border-radius:22px;background:#fff;box-shadow:0 1px 0 #0000000A,0 8px 22px #0000000D;color:var(--ink);transition:transform .45s var(--ease),box-shadow .3s}
+.panel:not(.open) .eight a{box-shadow:0 0 0 1px #0000000D,0 6px 16px #0000000A}
+.eight a:hover{transform:translateY(-3px);box-shadow:0 1px 0 #0000000A,0 14px 30px #00000014}
+.eight .pic{width:52px;height:52px;border-radius:15px;overflow:hidden;background:var(--tint);box-shadow:0 0 0 1px #0000000F;margin-bottom:14px}
+.eight .pic img{width:100%;height:100%;object-fit:cover}
+.eight .pic.pt img{object-position:50% 0}
+.eight .pic.ct img{object-fit:contain;padding:4px}
+.eight small{font-size:12.5px;font-weight:600;color:var(--mute)}
+.eight b{margin-top:2px;font-size:18px}
+.eight span{font-size:14px;line-height:1.45;color:var(--soft-ink)}
+.eight .arr{position:absolute;right:16px;top:18px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--tint);transition:background .2s,color .2s}
+.eight .arr .i{width:12px;height:12px}
+.eight a:hover .arr{background:var(--ink);color:#fff}
+
+/* ----- Pages projet : le titre sur photo, sans le reste du dégradé gris ----- */
+.v3 .p-hero .mega em{background:none!important;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;-webkit-text-fill-color:#fff}
+.v3 .p-hero.light .mega em{color:var(--ink);-webkit-text-fill-color:var(--ink)}
+@media (max-width:760px){.proofs.pl{grid-template-columns:repeat(2,minmax(0,1fr))}.proofs.pl a{padding:16px}.proofs.pl .arr{display:none}}
+@media (max-width:420px){.proofs.pl{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== Retours du 8 nov. (2) ===== */
+/* Carrousel des services : pleine largeur du bloc, fondus doux sur les bords, glisser à la souris */
+.svc-wrap{--in:max(var(--pad),calc((100% - 1100px) / 2 + var(--pad)));--fade:max(16px,calc(var(--in) - 4px))}
+.svc-wrap .rail{padding:8px var(--in) 22px;scroll-padding-inline:var(--in);
+  -webkit-mask-image:linear-gradient(90deg,#0000 0,#000 var(--fade),#000 calc(100% - var(--fade)),#0000);
+          mask-image:linear-gradient(90deg,#0000 0,#000 var(--fade),#000 calc(100% - var(--fade)),#0000)}
+.svc-wrap .rail::after{content:"";width:1px}
+@media (hover:hover) and (pointer:fine){.svc-wrap .rail{cursor:grab}}
+.svc-wrap .rail.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.svc-wrap .rail.dragging li{transform:none}
+.svc-wrap .rail img{-webkit-user-drag:none;user-select:none}
+.rail-nav [data-next] .i{transform:rotate(180deg)}
+
+/* Pourquoi moi : pas de contour, des fonds doux ; pastilles de projets sans fond ni contour */
+.v3 #preuve .cond div,.panel:not(.open) #preuve .cond div,#preuve .cond div{box-shadow:none;border:0;background:linear-gradient(160deg,#F6F7FA,#EEF1F6)}
+#preuve .minilogos{gap:6px 18px;margin-top:22px}
+#preuve .minilogos a{padding:0;background:none;box-shadow:none;border-radius:0}
+#preuve .minilogos a:hover{box-shadow:none;transform:translateY(-2px)}
+#preuve .minilogos .pic{width:28px;height:28px;border-radius:8px}
+
+/* Réalisations : en-tête plus court, projets visibles dès l'arrivée, objets 3D au milieu des côtés */
+.ciel.hreal .ciel-txt{padding-top:calc(88px + 3vh);padding-bottom:clamp(20px,2.6vw,36px)}
+.ciel.hreal + #projets{padding-top:clamp(6px,1vw,14px)}
+.js #projets [data-r]{opacity:1;transform:none;animation:v3rise .9s var(--ease) both;animation-delay:calc(var(--d,0s) + .15s)}
+@keyframes v3rise{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.js #projets [data-r]{animation:none}}
+@media (min-width:761px){
+  .ciel.hreal .fl.f1{left:6%;top:auto;bottom:4%;width:clamp(110px,11vw,170px)}
+  .ciel.hreal .fl.f3{right:6%;top:auto;bottom:6%;width:clamp(110px,11vw,170px)}
+}
+@media (max-width:760px){.ciel.hreal .ciel-txt{padding-top:150px;padding-bottom:28px}}
+
+/* Les six façons dont l'IA rapporte (Intégrer l'IA, section « Le gain ») */
+.kinds-head{text-align:center;margin:clamp(48px,6vw,80px) auto 0;max-width:640px}
+.kinds-head h3{margin:0;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.035em;line-height:1.15}
+.kinds-head p{margin:10px 0 0;font-size:16px;line-height:1.5;color:var(--soft-ink)}
+.kinds{list-style:none;margin:clamp(22px,3vw,34px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gut)}
+.kinds li{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:16px;align-items:center;padding:20px 22px;border-radius:24px;background:linear-gradient(160deg,#F6F7FA,#EEF1F6)}
+.kinds img{grid-row:span 2;width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 8px 10px #0002)}
+.kinds b{font-size:16.5px;letter-spacing:-.02em;align-self:end}
+.kinds span{margin-top:3px;font-size:14.5px;line-height:1.45;color:var(--soft-ink);align-self:start}
+@media (max-width:900px){.kinds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.kinds{grid-template-columns:1fr}}
+
+/* ---- Objets 3D du nouveau style (kit 3D v3, 8 nov.) ---- */
+.rail .sv-im img.mx{width:auto;height:132px;max-width:86%;filter:drop-shadow(0 14px 16px #00000038)}
+.eight .pic.em{background:none;box-shadow:none;border-radius:0;overflow:visible}
+.eight .pic.em img{object-fit:contain;filter:drop-shadow(0 6px 8px #0000002A)}
+.c-stage .crew{filter:drop-shadow(0 18px 26px #0000002E)}
+/* Très petits écrans : un bouton au texte long passe à la ligne au lieu de déborder */
+@media (max-width:380px){.v3 .btn{white-space:normal;height:auto;min-height:44px;padding-top:10px;padding-bottom:10px;text-align:center;line-height:1.25;max-width:100%}}
+/* Le constat : 13 / 64 / 23 (Bpifrance, ETI, juin 2026) */
+.gb-a{flex-basis:13%}
+.gb-b{flex-basis:64%}
+/* Marches du gain : les nouveaux objets sont réglés en hauteur (l'ampoule, haute, ne cache plus « Niveau 1 ») */
+.stp img{width:auto;height:clamp(68px,6.2vw,88px);max-width:120px;object-fit:contain;top:-40px}
+
+/* ===================== Retours du 9 nov. (note vocale) ===================== */
+/* Accueil : test sans les deux grandes îles, les liens deviennent des pastilles en verre */
+.isles.duo .isle.solo{width:auto}
+.isle.solo .tag{position:static;transform:none;font-size:15px;padding:12px 18px;gap:8px;background:#FFFFFFCC;box-shadow:inset 0 1px 0 #fff,0 10px 28px #2A3A5024}
+.isle.solo .tag .i{width:13px;height:13px}
+.isle.solo:hover .tag{transform:translateY(-3px);background:#fff}
+@media (max-width:760px){.isle.solo .tag{font-size:12.5px;padding:8px 12px}}
+
+/* Logos et favicon dans les pastilles de projets */
+.pic.ct img,.minilogos .pic.ct img,.proofs.pl .pic.ct img{object-fit:contain;padding:2px}
+#preuve .minilogos .pic.ct,.proofs.pl .pic.ct{background:none;box-shadow:none}
+.eight .pic.lg{background:#fff;box-shadow:0 0 0 1px #0000000F}
+.eight .pic.lg img{object-fit:contain;padding:6px}
+
+/* À propos : les deux pastilles du haut côte à côte */
+.ciel-txt .chip-stars + .kicker{display:inline-flex;margin:0 0 0 6px;vertical-align:middle}
+.ciel-txt .chip-stars{vertical-align:middle}
+@media (max-width:420px){.ciel-txt .chip-stars + .kicker{margin:8px 0 0}}
+
+/* Le constat : trois segments arrondis et séparés, sans le bleu soutenu */
+.gb-track{background:none;gap:6px;border-radius:0;overflow:visible}
+.gb.gb-a,.gb.gb-b,.gb.gb-c{border-radius:18px;box-shadow:inset 0 1px 0 #FFFFFF26}
+.gb.gb-a{background:linear-gradient(160deg,#3A3A40,#0B0B0C)}
+.gb.gb-b{background:linear-gradient(100deg,#B7D0E6,#DCE8F2);color:var(--ink)}
+.gb.gb-c{background:var(--tint);color:var(--mute)}
+.gb-leg li.gb-b{border-color:#B7D0E6}
+.gb-leg strong{color:var(--ink);font-weight:700}
+
+/* Plus de petits textes et de petites barres en bleu */
+.cases .ap{border-left-color:#1D1D1F}
+.cases .ap small{color:var(--ink);font-weight:700}
+.stp-c .lvl{color:#FFFFFFA6}
+.stp-c::after{background:radial-gradient(120% 60% at 50% 0%,#FFFFFF14,#0000 70%)}
+
+/* Le rôle : la photo des MAX alignée avec le texte */
+#role .vision{align-items:center}
+#role .c-stage{align-self:center}
+
+/* L'offre : la carte noire mieux remplie */
+.bx-main{justify-content:flex-start;gap:22px}
+.bx-main .bx-steps{margin-top:auto}
+.bx-facts{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.bx-facts li{padding:12px 14px;border-radius:16px;background:#FFFFFF0F;box-shadow:inset 0 0 0 1px #FFFFFF14;font-size:13.5px;line-height:1.35;color:#C9C9D1}
+.bx-facts b{display:block;color:#fff;font-size:15px;letter-spacing:-.01em;margin-bottom:2px}
+@media (max-width:600px){.bx-facts{grid-template-columns:minmax(0,1fr)}}
+
+/* Réalisations : le titre à la même hauteur que sur Intégrer l'IA et Construire un produit */
+.ciel.hreal .ciel-txt{padding-top:calc(96px + 8vh);padding-bottom:clamp(28px,3vw,44px)}
+.ciel.hreal + #projets{padding-top:clamp(10px,1.4vw,20px)}
+@media (max-width:760px){.ciel.hreal .ciel-txt{padding-top:calc(150px + 4vh);padding-bottom:40px}}
+/* Même hauteur de titre sur toutes les pages intérieures */
+.ciel.hs .ciel-txt{padding-top:calc(96px + 8vh)}
+@media (max-width:760px){.ciel.hs .ciel-txt{padding-top:calc(150px + 4vh)}}
+
+/* Objets « style Apple » (tour 3) : blancs sur fond clair, une ombre plus nette pour qu'ils se détachent */
+img[src*="/img/apple/"]:not(.mx):not(.crew){filter:drop-shadow(0 10px 14px #1D1D1F2E) drop-shadow(0 1px 1.5px #1D1D1F33)}
+.stp img[src*="/img/apple/"]{height:clamp(76px,7vw,98px);max-width:130px}
+.cases .ch img[src*="/img/apple/"]{width:56px;height:56px;object-fit:contain}
+.etapes img[src*="/img/apple/"]{filter:drop-shadow(0 8px 12px #1D1D1F33) drop-shadow(0 1px 1.5px #1D1D1F33)}
+
+/* ===================== Retours du 9 nov. (2e note) ===================== */
+/* Pastilles du haut sur une même ligne */
+.ciel-txt .chips-row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px}
+.ciel-txt .chips-row .kicker,.ciel-txt .chips-row .chip-stars{margin:0}
+.ciel-txt .chips-row + .mega,.ciel-txt .chips-row + h1{margin-top:22px}
+
+/* Décor des héros : sur les côtés, à mi-hauteur (les nuages restent en haut et en bas) */
+.isles .fl.sd{top:auto;bottom:auto;left:auto;right:auto;width:clamp(78px,7vw,118px)}
+.isles .fl.sL1{left:max(3%,calc(50% - 640px));top:36%}
+.isles .fl.sL2{left:max(7%,calc(50% - 560px));top:62%;width:clamp(64px,5.6vw,92px)}
+.isles .fl.sR1{right:max(3%,calc(50% - 640px));top:32%}
+.isles .fl.sR2{right:max(7%,calc(50% - 560px));top:60%;width:clamp(64px,5.6vw,92px)}
+.isles .fl.sd.mx2{width:clamp(110px,10vw,160px)}
+.ciel.hasfan .isles .fl.sL1,.ciel.hasfan .isles .fl.sR1{top:30%}
+@media (max-width:1100px){.isles .fl.sd{width:clamp(56px,7vw,80px)}.isles .fl.sL1,.isles .fl.sR1{top:auto;bottom:6%}.isles .fl.sL2,.isles .fl.sR2{display:none}.isles .fl.sd.mx2{width:96px}}
+@media (max-width:760px){.isles .fl.sd{display:none}}
+
+/* Bas de l'accueil : ciel clair et quatre façons de commencer */
+.fin-ciel{position:relative;overflow:hidden;background:linear-gradient(180deg,#F5F5F7 0%,#E3EDF6 55%,#C9DCEC 100%);text-align:center}
+.fin-ciel .cloud{position:absolute;pointer-events:none;filter:drop-shadow(0 18px 30px #8FA9C233)}
+.fin-ciel .fc1{left:-3%;top:8%;width:clamp(160px,18vw,300px)}
+.fin-ciel .fc2{right:-2%;top:18%;width:clamp(170px,19vw,320px)}
+.fin-ciel .fc3{left:12%;bottom:4%;width:clamp(90px,9vw,150px);opacity:.9}
+.fin-ciel .mw{position:relative;z-index:1}
+.fin-head .fin-max{display:block;width:clamp(92px,8vw,124px);margin:0 auto 8px;filter:drop-shadow(0 16px 22px #0003)}
+.fin-head .lead{margin:14px auto 0;max-width:34em}
+.starts{list-style:none;margin:clamp(28px,4vw,44px) auto 0;padding:0;max-width:1040px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;text-align:left}
+.starts a{position:relative;display:flex;flex-direction:column;gap:6px;height:100%;padding:20px 20px 22px;border-radius:24px;background:#FFFFFFCC;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 30px #50607A14;color:var(--ink);transition:transform .4s var(--ease),background .3s}
+.starts a:hover{transform:translateY(-4px);background:#fff}
+.starts img{width:60px;height:60px;object-fit:contain;margin-bottom:6px}
+.starts b{font-size:17px;letter-spacing:-.02em;line-height:1.2}
+.starts span{font-size:14.5px;line-height:1.45;color:var(--soft-ink)}
+.starts .arr{position:absolute;top:18px;right:18px;color:var(--mute)}
+.starts .arr .i{width:13px;height:13px}
+.fin-ciel .center-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,3.4vw,40px)}
+.fin-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:18px 0 0;font-size:14.5px;font-weight:600}
+.fin-links a{color:var(--soft-ink)}
+@media (max-width:980px){.starts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.starts{grid-template-columns:minmax(0,1fr)}.fin-ciel .fc2{top:3%}}
+
+/* Le constat : chiffre et libellé dans chaque barre, une phrase en dessous */
+.gb{flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
+.gb small{font-size:13px;font-weight:600;white-space:nowrap;opacity:.82;letter-spacing:-.01em}
+.gb-note{margin:16px 0 0;font-size:15px;line-height:1.5;color:var(--soft-ink)}
+.gb-note strong{color:var(--ink)}
+@media (max-width:760px){.gb small{display:none}.gb.gb-a b{display:none}}
+
+/* Le rôle : la photo des MAX plus grande, bien proportionnée */
+#role .vision{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+#role .c-stage{max-width:640px;aspect-ratio:auto}
+#role .c-stage .halo{inset:0 6%}
+#role .c-stage .crew{position:relative;left:0;top:0;width:100%}
+@media (max-width:900px){#role .vision{grid-template-columns:minmax(0,1fr)}}
+
+/* L'offre : sans contours, et une frise pour les quatre étapes */
+.panel:not(.open) .bx:not(.bx-main),.bx:not(.bx-main){box-shadow:0 8px 24px #0000000A}
+.bx-facts li{box-shadow:none;background:#FFFFFF12}
+.bx-main .bx-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.bx-main .bx-steps::before{content:"";position:absolute;left:12.5%;right:12.5%;top:13px;height:2px;border-radius:2px;background:linear-gradient(90deg,#FFFFFF66,#FFFFFF26)}
+.bx-main .bx-steps li{position:relative;z-index:1;background:none;padding:0;align-items:center;text-align:center;gap:8px;font-size:14px}
+.bx-main .bx-steps span{box-shadow:0 0 0 5px #0B0B0C}
+
+/* Construire un produit, preuves : grandes cartes pleines, fondu, texte en bas */
+.builds.b4 .build.bp{position:relative;padding:0;border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:#0B0B0C;box-shadow:0 10px 30px #0000001A;color:#fff}
+.builds.b4 .build.bp .im{position:absolute;inset:0;border-radius:0;aspect-ratio:auto}
+.builds.b4 .build.bp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 30%,#000000B3 72%,#000000E6 100%);pointer-events:none}
+.builds.b4 .build.bp .big2{left:14px;top:14px;bottom:auto;z-index:2}
+.builds.b4 .build.bp .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px 18px 20px}
+.builds.b4 .build.bp h3{color:#fff}
+.builds.b4 .build.bp p{color:#FFFFFFC7}
+.builds.b4 .build.bp .lnk{color:#fff;padding-top:10px}
+@media (max-width:640px){.builds.b4 .build.bp{aspect-ratio:4/5}}
+
+/* À propos : logo Aurizon (blanc) sur fond sombre ; logo TRAK */
+.eight .pic.lg.dk{background:#0B0B0C}
+.trio .trio-logo{display:grid;place-items:center;width:72px;height:72px;border-radius:20px;background:#0B0B0C}
+.trio .trio-logo img{width:52px;height:auto;filter:none}
+/* Preuves : fondu plus sombre pour lire le texte sur les images claires ; rôle : colonnes égales */
+.builds.b4 .build.bp::after{background:linear-gradient(180deg,#0000 18%,#000000B8 54%,#000000F0 100%)}
+.builds.b4 .build.bp .tx{text-shadow:0 1px 12px #0008}
+#role .vision{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+
+/* ===================== Corrections de la relecture (9 nov.) ===================== */
+/* Constat sur mobile : une ligne par valeur, lisible */
+@media (max-width:600px){
+  .gb-track{flex-direction:column;height:auto;gap:6px}
+  .gb.gb-a,.gb.gb-b,.gb.gb-c,.js:not(.rv) .gapbar:not(.in) .gb.gb-a,.js:not(.rv) .gapbar:not(.in) .gb.gb-b{flex:0 0 52px!important;flex-direction:row;align-items:center;justify-content:space-between;padding:0 16px}
+  .gb small,.gb.gb-a b{display:inline!important}
+  .gb b{font-size:22px}
+}
+/* Plus de barre verticale ni de contour */
+.cases .ap{border-left:0;padding-left:0}
+.guar li{border:0}
+/* FAQ centrée */
+.faq{max-width:860px;margin-inline:auto}
+/* Cartes : titres alignés en haut, cases « Avant » de même hauteur */
+.kinds li,.gets li{align-items:start;align-content:start}
+.cases .av{min-height:72px}
+/* Gain : de l'air entre les marches sur mobile */
+@media (max-width:760px){.stairs{row-gap:56px}}
+/* Rôle : un titre équilibré */
+#role h2{text-wrap:balance}
+/* Preuves de Construire un produit : plus compactes sur mobile */
+@media (max-width:640px){.builds.b4 .build.bp{aspect-ratio:4/3}}
+/* Résultats de l'accueil : cartes de même hauteur */
+.proofs.pl{align-items:stretch}
+.proofs.pl li,.proofs.pl li a{height:100%}
+/* Bloc de fin, version noire */
+.fin-ciel.dk{background:radial-gradient(90% 70% at 50% 0%,#2A2D35 0%,#111216 55%,#0B0B0C 100%);color:#fff}
+.fin-ciel.dk .kicker{background:#FFFFFF14;color:#D9D9DE}
+.fin-ciel.dk h2{color:#fff}
+.fin-ciel.dk .lead{color:#C9C9D1}
+.fin-ciel.dk .starts a{background:#FFFFFF0D;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;color:#fff}
+.fin-ciel.dk .starts a:hover{background:#FFFFFF17}
+.fin-ciel.dk .starts span{color:#B9B9C2}
+.fin-ciel.dk .starts .arr{color:#8E8E96}
+.fin-ciel.dk .starts img{filter:drop-shadow(0 10px 18px #0008)}
+.fin-ciel.dk .fin-links a{color:#B9B9C2}
+.fin-ciel.dk .fin-max{filter:drop-shadow(0 16px 30px #000)}
+.fin-ciel .rdv-wrap{margin-top:34px}
+.fin-ciel .rdv.lf{margin-inline:auto;text-align:left;box-shadow:none;background:#FFFFFF0D}
+/* Bloc de fin noir : un halo doux derrière MAX (velours noir sur fond noir) */
+.fin-head{position:relative}
+.fin-ciel.dk .fin-head::before{content:"";position:absolute;left:50%;top:-34px;width:260px;height:260px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#FFFFFF24 0%,#FFFFFF0A 42%,#FFFFFF00 68%);pointer-events:none}
+.fin-ciel.dk .fin-max{position:relative;filter:drop-shadow(0 0 1px #FFFFFF40) drop-shadow(0 18px 28px #000)}
+
+/* ===================== Bento des preuves (Construire un produit) ===================== */
+.bento-p{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(2,clamp(220px,21vw,290px));gap:var(--gut)}
+.bb{position:relative;display:block;overflow:hidden;border-radius:26px;background:#0B0B0C;color:#fff;isolation:isolate;transition:transform .5s var(--ease)}
+.bb:hover{transform:translateY(-4px)}
+.bb > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease)}
+.bb:hover > img{transform:scale(1.04)}
+.bb::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#00000000 35%,#000000B3 70%,#000000EB 100%)}
+.bb.bb-big{grid-row:span 2}
+.bb.bb-wide{grid-column:span 2}
+.bb .big2{position:absolute;left:14px;top:14px;padding:6px 12px;border-radius:99px;background:#FFFFFFE6;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);font-size:13.5px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.bb .tx{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:3px;padding:16px 18px 18px}
+.bb .tx b{font-size:16.5px;letter-spacing:-.02em;line-height:1.2}
+.bb.bb-big .tx b{font-size:clamp(19px,1.7vw,24px)}
+.bb .tx > span{font-size:13.5px;line-height:1.4;color:#FFFFFFBF}
+.bb .lnk{margin-top:6px;display:inline-flex;align-items:center;gap:6px;font-style:normal;font-size:13.5px;font-weight:600}
+.bb .lnk .i{width:11px;height:11px}
+@media (max-width:900px){.bento-p{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:240px}.bb.bb-big{grid-column:span 2;grid-row:auto}.bb.bb-wide{grid-column:span 2}}
+@media (max-width:560px){.bento-p{grid-template-columns:minmax(0,1fr);grid-auto-rows:230px}.bb.bb-big,.bb.bb-wide{grid-column:auto}.bb.bb-big{height:300px}}
+
+/* ===================== Bloc de fin noir, version finale ===================== */
+.fin-ciel.dk .fin-head::before{display:none}
+.fin-ciel.dk .fin-max{filter:drop-shadow(0 18px 28px #000)}
+.fin-ciel .kicker{display:inline-flex;align-items:center;padding:6px 13px;border-radius:99px;margin:4px 0 0}
+.fin-ciel.dk .kicker{background:#FFFFFF14;color:#D9D9DE}
+.fin-ciel:not(.dk) .kicker{background:#FFFFFFB3}
+.fin-head .big{margin-top:12px;text-wrap:balance}
+.fin-deco{position:absolute;z-index:0;pointer-events:none;width:clamp(84px,8vw,128px);filter:drop-shadow(0 18px 26px #000A);animation:bob 6s ease-in-out infinite alternate}
+.fin-deco.l{left:max(4%,calc(50% - 640px));top:22%;rotate:-8deg}
+.fin-deco.r{right:max(4%,calc(50% - 640px));top:30%;rotate:7deg;animation-delay:-2.5s}
+@media (max-width:1100px){.fin-deco{width:72px}.fin-deco.l{top:4%;left:3%}.fin-deco.r{top:6%;right:3%}}
+@media (max-width:640px){.fin-deco{display:none}}
+@media (prefers-reduced-motion:reduce){.fin-deco{animation:none}}
+.starts.n3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:900px}
+@media (max-width:820px){.starts.n3{grid-template-columns:minmax(0,1fr);max-width:520px}}
+.fin-ciel .starts + .center-cta{margin-top:clamp(24px,3vw,34px)}
+
+/* Le constat : la présentation en lignes dès la tablette, pour que rien ne soit coupé */
+@media (max-width:760px){
+  .gb-track{flex-direction:column;height:auto;gap:6px}
+  .gb.gb-a,.gb.gb-b,.gb.gb-c,.js:not(.rv) .gapbar:not(.in) .gb.gb-a,.js:not(.rv) .gapbar:not(.in) .gb.gb-b{flex:0 0 52px!important;flex-direction:row;align-items:center;justify-content:space-between;padding:0 16px}
+  .gb small,.gb.gb-a b{display:inline!important}
+  .gb b{font-size:22px}
+}
+/* Bento des preuves : hauteurs fixes sur tablette et mobile (aucune carte ne chevauche la suivante) */
+@media (max-width:900px){.bento-p{grid-auto-rows:auto}.bb{height:240px}.bb.bb-big{height:320px}}
+@media (max-width:560px){.bb{height:230px}.bb.bb-big{height:300px}}
+
+/* ===================== Dernière passe (9 nov.) ===================== */
+/* Rendez-vous : le message d'attente disparaît vraiment quand le calendrier est chargé */
+.calbox .wait[hidden]{display:none}
+/* Le rôle : une seule colonne sur tablette et mobile */
+@media (max-width:900px){#role .vision{grid-template-columns:minmax(0,1fr)}}
+/* Vision : plus de barre verticale rouge sur les phrases fortes */
+.essay .body p.punch{border-left:0;padding-left:0}
+/* En-têtes des pages de projets : un fondu plus dense pour que le titre ne passe jamais sur l'image */
+.p-hero:not(.light)::after{background:linear-gradient(0deg,#08080BF7 0%,#08080BDE 42%,#08080B73 72%,#08080B2E 100%),linear-gradient(90deg,#08080BCC,#0000 65%)}
+@media (max-width:760px){.p-hero:not(.light)::after{background:linear-gradient(0deg,#08080BFA 0%,#08080BE6 55%,#08080B99 80%,#08080B4D 100%)}}
+.p-hero.light .sub{max-width:min(46%,30em)}
+@media (max-width:760px){.p-hero.light .sub{max-width:none}}
+/* Nuages des héros Réalisations et Construire un produit : pas sur le texte ni sur les téléphones, sur mobile */
+@media (max-width:600px){.ciel.hreal .cloud.c2,.ciel.hreal .cloud.c3,.ciel.hasfan .cloud.c2,.ciel.hasfan .cloud.c3{display:none}}
+/* Affiche de Breaking Face : on garde le visage et le titre dans les cartes */
+video.t-bg[poster*="bf-29"],img[src*="bf-29"]{object-position:78% 30%}
+/* Chiffres des projets : la dernière carte seule prend toute la largeur sur mobile */
+@media (max-width:600px){.p-nums li:last-child:nth-child(odd){grid-column:1 / -1}}
+/* Bandes de téléphones : l'ombre n'est plus coupée net */
+.b-phones{padding-bottom:52px;margin-bottom:-28px}
+/* Mini-analyse : cartes sans vide étiré */
+.ma-ex,.ma-two{align-items:start}
+/* Cas concrets : « Avec l'IA » au même niveau dans toutes les cartes */
+.cases li{display:flex;flex-direction:column}
+.cases .av{min-height:4.6em}
+/* Mentions légales : de l'air entre les paragraphes */
+.legal p{margin:0 0 14px}
+
+/* ===================== Retours du 9 nov. (3e note) ===================== */
+/* Surtitres des sections : une pastille blanche, douce, sans contour */
+.sec-head .kicker,.vision .kicker,.who .kicker,.feat-main .kicker{display:inline-flex;align-items:center;gap:7px;padding:6px 14px 6px 11px;border-radius:99px;background:#FFFFFFE6;box-shadow:0 1px 2px #0000000D,0 8px 20px #0000000D;color:var(--soft-ink);font-size:13px;font-weight:600}
+.sec-head .kicker::before,.vision .kicker::before,.who .kicker::before,.feat-main .kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink);opacity:.75}
+.panel:not(.open) .sec-head .kicker,.panel:not(.open) .vision .kicker,.panel:not(.open) .who .kicker{background:#F2F3F6;box-shadow:none}
+.panel.dark .sec-head .kicker{background:#FFFFFF14;color:#D9D9DE;box-shadow:none}
+.panel.dark .sec-head .kicker::before{background:#fff}
+.sec-head .big{margin-top:14px}
+
+/* Le constat : un petit tableau par zone */
+.gb-cards{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.gb-cards li{border-radius:18px;background:#F4F6F9;padding:14px 16px}
+.gb-cards b{display:flex;align-items:center;gap:8px;font-size:14.5px;letter-spacing:-.01em;color:var(--ink)}
+.gb-cards i{flex:0 0 auto;width:10px;height:10px;border-radius:3px;background:#B7D0E6}
+.gb-cards .gb-a i{background:#1D1D1F}
+.gb-cards .gb-c i{background:#D9DDE3}
+.gb-cards span{display:block;margin-top:6px;font-size:14px;line-height:1.45;color:var(--soft-ink)}
+.gb-cards strong{color:var(--ink)}
+@media (max-width:760px){.gb-cards{grid-template-columns:minmax(0,1fr)}}
+
+/* Le gain : les objets des niveaux 2 et 3 posés en haut de leur carte, sans trop dépasser */
+.stp-b img,.stp-c img{top:-20px}
+
+/* Le rôle : la photo des MAX un peu plus petite */
+#role .c-stage{max-width:520px}
+
+/* Carrousel : une bulle d'exemple au survol ou au toucher, comme si MAX parlait */
+.rail li{position:relative;outline:none}
+.sv-tip{position:absolute;left:12px;right:12px;top:150px;z-index:3;padding:12px 14px 13px;border-radius:18px;background:var(--ink);color:#fff;font-size:13.5px;line-height:1.45;box-shadow:0 14px 30px #0000002E;opacity:0;transform:translateY(8px) scale(.98);transform-origin:50% 0;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
+.sv-tip::before{content:"";position:absolute;left:50%;top:-7px;width:14px;height:14px;border-radius:3px;background:var(--ink);transform:translateX(-50%) rotate(45deg)}
+.sv-tip small{display:block;margin-bottom:3px;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:#B9B9C2}
+.rail li:hover .sv-tip,.rail li:focus .sv-tip,.rail li.open .sv-tip{opacity:1;transform:none}
+.rail.dragging li .sv-tip{opacity:0}
+
+/* Garanties : un bloc à part, avec un titre */
+.guar-title{margin:clamp(40px,5vw,64px) 0 16px;text-align:center;font-size:clamp(20px,2vw,26px);letter-spacing:-.03em}
+.guar{margin-top:0}
+
+/* Formulaire : une phrase d'intro, l'aide « ? » et plus d'air */
+.lf-intro{margin:-6px 0 18px;font-size:14.5px;line-height:1.5;color:#B9B9C2}
+.lf .lf-grid{gap:14px}
+.lf .rdv-row{margin-top:18px}
+.lf .lf-actions{margin-top:22px}
+.tip{position:relative;display:inline-grid;place-items:center;width:18px;height:18px;margin-left:4px;border:0;border-radius:50%;background:#FFFFFF24;color:#fff;font:700 11px/1 Inter,sans-serif;cursor:help;vertical-align:1px}
+.tip-pop{position:absolute;left:50%;bottom:calc(100% + 10px);z-index:20;width:min(280px,70vw);padding:11px 13px;border-radius:14px;background:#fff;color:var(--ink);font-size:13px;font-weight:500;line-height:1.45;text-align:left;box-shadow:0 14px 30px #0000004D;opacity:0;transform:translate(-50%,6px);transition:opacity .2s,transform .3s var(--ease);pointer-events:none}
+.tip-pop::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:2px}
+.tip-pop b{font-weight:700}
+.tip:hover .tip-pop,.tip:focus .tip-pop,.tip.open .tip-pop{opacity:1;transform:translate(-50%,0)}
+@media (max-width:600px){.tip-pop{left:auto;right:-10px;transform:translateY(6px)}.tip:hover .tip-pop,.tip:focus .tip-pop,.tip.open .tip-pop{transform:none}.tip-pop::after{left:auto;right:14px;transform:rotate(45deg)}}
+.fin-more{margin:clamp(34px,4vw,48px) 0 0;font-size:14.5px;font-weight:600;color:#B9B9C2}
+.fin-ciel .rdv-wrap + .center-cta{margin-top:20px}
+
+/* Le parcours (À propos) : cartes grises douces, sans contour */
+.eight li a{background:#F2F3F6;box-shadow:none}
+.panel:not(.open) .eight li a{background:#F2F3F6}
+.eight .pic.lg{box-shadow:none}
+.panel:not(.open) .eight a,.eight a{box-shadow:none}
+/* Formulaire sur mobile : le bouton « Valider » garde sa hauteur ; l'aide « ? » reste dans l'écran */
+@media (max-width:640px){
+  .lf-actions .lf-go{flex:0 0 auto}
+  .lf .fld,.lf .rdv-row{position:relative}
+  .lf .tip{position:static}
+  .lf .tip-pop,.lf .tip:hover .tip-pop,.lf .tip:focus .tip-pop,.lf .tip.open .tip-pop{left:0;right:0;width:auto;bottom:calc(100% + 4px);transform:none}
+  .lf .tip-pop::after{display:none}
+}
