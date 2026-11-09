@@ -178,14 +178,14 @@
 </section>
 <section class="panel fin-ciel dk pad" id="contact" aria-labelledby="t-contact"><img class="fin-deco l" src="assets-v3/img/apple/decor-carnet.webp" alt="" loading="lazy" aria-hidden="true"><img class="fin-deco r" src="assets-v3/img/apple/decor-touche.webp" alt="" loading="lazy" aria-hidden="true">
   <div class="mw">
-    <div class="fin-head" data-r><img class="fin-max" src="assets/img/monde/max-ordinateur.webp" alt="" loading="lazy"><p class="kicker">On en parle ?</p><h2 class="big" id="t-contact">Qui pilote l’IA dans votre entreprise aujourd’hui ?</h2><p class="lead">Réservez 20 minutes. Ou recevez d’abord votre mini-analyse : une page gratuite sous 24 h, sur le service de votre choix.</p></div>
+    <div class="fin-head" data-r><img class="fin-max" src="assets/img/monde/max-ordinateur.webp" alt="" loading="lazy"><p class="kicker">On en parle ?</p><h2 class="big" id="t-contact">Qui pilote l’IA dans votre entreprise aujourd’hui ?</h2><p class="lead">Réservez 20 minutes. Ou recevez d’abord votre mini-analyse : une page gratuite sous 48 h, sur le service de votre choix.</p></div>
     <div id="mini-analyse" class="rdv-wrap"><form class="rdv lf" data-lf data-mail="contact@tomberthet.fr" data-key="a1e2123b-a580-4bd3-8246-c2a4cc4ec69d" action="https://api.web3forms.com/submit" method="POST" aria-label="Recevoir la mini-analyse">
       <ol class="lf-steps" aria-hidden="true"><li class="on">Contact</li><li>Entreprise</li><li>Envoyé</li></ol>
       <div class="lf-step" data-step="1">
-        <p class="lf-q">Où vous l’envoyer ?</p><p class="lf-intro">Une page gratuite, sous 24 h : trois tâches d’un de vos services que l’IA peut alléger, chiffrées.</p>
+        <p class="lf-q">Où vous l’envoyer ?</p><p class="lf-intro">Une page gratuite, sous 48 h : trois tâches d’un de vos services que l’IA peut alléger, chiffrées.</p>
         <div class="lf-grid">
-          <label class="fld"><span>Prénom</span><input name="prenom" autocomplete="given-name" required maxlength="60" placeholder="Votre prénom"></label>
-          <label class="fld"><span>Email professionnel</span><input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="nom@entreprise.fr"></label>
+          <label class="fld"><span>Prénom</span><input name="prenom" autocomplete="given-name" autocapitalize="words" required maxlength="60" placeholder="Votre prénom"></label>
+          <label class="fld"><span>Email professionnel</span><input name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required maxlength="120" placeholder="nom@entreprise.fr"></label>
         </div>
         <button class="btn white lf-go" type="submit"><span>Continuer</span><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></button>
         <p class="lf-note">Votre prénom et votre email me sont transmis dès cette étape, uniquement pour vous répondre (<a href="mentions-legales.html#donnees">données personnelles</a>).</p>
@@ -194,10 +194,10 @@
         <p class="lf-ok" data-hello>C’est noté.</p>
         <p class="lf-q">Pour que la page soit juste</p>
         <div class="lf-grid">
-          <label class="fld"><span>Entreprise <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le nom suffit. Je regarde seulement ce qui est public : votre site, vos offres d’emploi, votre page LinkedIn.</span></button></span><input name="entreprise" autocomplete="organization" maxlength="100" placeholder="Nom de l’entreprise"></label>
-          <label class="fld"><span>Le service le plus chargé <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le service où l’équipe manque le plus de temps : administration des ventes, service client, comptabilité… La mini-analyse porte sur lui.</span></button></span><input name="service" maxlength="100" placeholder="Ex. : service client"></label>
+          <label class="fld"><span>Entreprise <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le nom suffit. Je regarde seulement ce qui est public : votre site, vos offres d’emploi, votre page LinkedIn.</span></button></span><input name="entreprise" autocomplete="organization" autocapitalize="words" maxlength="100" placeholder="Nom de l’entreprise"></label>
+          <label class="fld"><span>Le service le plus chargé <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip">Le service où l’équipe manque le plus de temps : administration des ventes, service client, comptabilité… La mini-analyse porte sur lui.</span></button></span><input name="service" list="lf-services" autocomplete="on" autocapitalize="sentences" maxlength="100" placeholder="Ex. : service client"></label>
         </div>
-        <fieldset class="rdv-row"><legend>Ce qui vous intéresse <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip"><b>La mini-analyse</b> : une page gratuite sous 24 h sur ce service.<br><b>Former mes équipes</b> : chaque personne apprend l’IA sur ses propres tâches, et les formations restent enregistrées.<br><b>Un outil sur mesure</b> : une app ou un outil construit pour votre équipe.</span></button></legend>
+        <fieldset class="rdv-row"><legend>Ce qui vous intéresse <button type="button" class="tip" aria-label="Aide">?<span class="tip-pop" role="tooltip"><b>La mini-analyse</b> : une page gratuite sous 48 h sur ce service.<br><b>Former mes équipes</b> : chaque personne apprend l’IA sur ses propres tâches, et les formations restent enregistrées.<br><b>Un outil sur mesure</b> : une app ou un outil construit pour votre équipe.</span></button></legend>
           <label><input type="radio" name="besoin" value="Recevoir la mini-analyse" checked><span>La mini-analyse</span></label>
           <label><input type="radio" name="besoin" value="Former mes équipes"><span>Former mes équipes</span></label>
           <label><input type="radio" name="besoin" value="Un outil sur mesure"><span>Un outil sur mesure</span></label>
@@ -210,16 +210,16 @@
       <div class="lf-step lf-done" data-step="3" hidden>
         <span class="lf-check" aria-hidden="true"><svg class="i"><use href="assets/icons.svg#check"/></svg></span>
         <p class="lf-q" data-thanks>Merci, c’est envoyé.</p>
-        <p class="lf-sub" data-next>Je vous envoie votre mini-analyse sous 24 h. D’ici là, connectons-nous sur LinkedIn.</p>
+        <p class="lf-sub" data-next>Je vous envoie votre mini-analyse sous 48 h. D’ici là, connectons-nous sur LinkedIn.</p>
         <a class="btn white" href="https://www.linkedin.com/in/tomberthet1/" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#linkedin"/></svg>Se connecter sur LinkedIn</a>
       </div>
       <input type="hidden" name="access_key" value="a1e2123b-a580-4bd3-8246-c2a4cc4ec69d">
       <input type="hidden" name="subject" value="Mini-analyse demandée depuis tomberthet.fr">
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="rdv-status" role="status" aria-live="polite" tabindex="-1"></p>
-    </form></div>
+    <datalist id="lf-services"><option value="Administration des ventes"><option value="Service client"><option value="Comptabilité"><option value="Ressources humaines"><option value="Achats"><option value="Logistique"><option value="Commercial"><option value="Marketing"><option value="Juridique"><option value="Support technique"><option value="Direction"></datalist></form></div>
 <div class="cta center-cta" data-r><a class="btn ghost-w" href="rendez-vous.html">Réserver 20 minutes plutôt</a></div>
-<p class="fin-more" data-r>Ou, pour aller plus loin :</p><ul class="starts n3" data-r><li><a href="exemple-mini-analyse.html"><img src="assets-v3/img/apple/methode-auditer.webp" alt="" loading="lazy"><b>Voir une mini-analyse</b><span>La page gratuite que vous recevez sous 24 h.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li><li><a href="exemple-rapport.html"><img src="assets-v3/img/apple/methode-suivre.webp" alt="" loading="lazy"><b>Voir un rapport d’audit</b><span>Les heures récupérables, service par service.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li><li><a href="produit.html"><img src="assets-v3/img/apple/besoin-logiciel-metier.webp" alt="" loading="lazy"><b>Un outil sur mesure ?</b><span>Quand il manque un outil, je le construis.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li></ul>
+<p class="fin-more" data-r>Ou, pour aller plus loin :</p><ul class="starts n3" data-r><li><a href="exemple-mini-analyse.html"><img src="assets-v3/img/apple/methode-auditer.webp" alt="" loading="lazy"><b>Voir une mini-analyse</b><span>La page gratuite que vous recevez sous 48 h.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li><li><a href="exemple-rapport.html"><img src="assets-v3/img/apple/methode-suivre.webp" alt="" loading="lazy"><b>Voir un rapport d’audit</b><span>Les heures récupérables, service par service.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li><li><a href="produit.html"><img src="assets-v3/img/apple/besoin-logiciel-metier.webp" alt="" loading="lazy"><b>Un outil sur mesure ?</b><span>Quand il manque un outil, je le construis.</span><em class="arr"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#go"/></svg></em></a></li></ul>
   </div>
 </section>
 </main>

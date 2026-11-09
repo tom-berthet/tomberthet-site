@@ -62,7 +62,7 @@
       fields.Sujet = val('besoin') || '—';
       fields.Entreprise = val('entreprise') || '—';
       fields.Service = val('service') || '—';
-      fields['A faire'] = val('besoin') === 'Recevoir la mini-analyse' ? 'Envoyer la mini-analyse sous 24 h' : 'Répondre sous 24 h';
+      fields['A faire'] = val('besoin') === 'Recevoir la mini-analyse' ? 'Envoyer la mini-analyse sous 48 h' : 'Répondre sous 48 h';
       fields['Recontacter'] = call ? `Par téléphone : ${val('telephone')}` : 'Par email';
     } else fields.Note = skipped ? 'La personne a passé les deux questions.' : 'La personne n’a pas terminé le formulaire : seuls le prénom et l’email sont connus.';
     const subject = done
@@ -81,10 +81,26 @@
 
   let sent = false, partial = false, timer = 0;
   const robot = () => form.elements.botcheck && form.elements.botcheck.checked;
+  const entIn = form.elements.entreprise, mailIn = form.elements.email;
+  const WEBMAIL = /^(gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|me|mac|aol|gmx|proton|protonmail|pm|orange|wanadoo|free|sfr|neuf|bbox|laposte|numericable|club-internet|libertysurf|tutanota|zoho|yandex|mail)$/;
+  if (entIn && mailIn) mailIn.addEventListener('change', () => {
+    if (entIn.value.trim()) return;
+    const parts = (mailIn.value.split('@')[1] || '').toLowerCase().split('.').filter(Boolean);
+    parts.pop();                                                         // .fr, .com…
+    if (parts.length > 1 && /^(co|com|org|net|gouv|ac)$/.test(parts[parts.length - 1])) parts.pop();   // .co.uk…
+    const n = parts.pop() || '';
+    if (n && !WEBMAIL.test(n)) entIn.value = n.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  });
+  const FN = "https://onmoelxfswwyqygislda.supabase.co/functions/v1/site-contact";
+  const viaQG = (done, keep) => FN ? fetch(FN, { method: 'POST', keepalive: !!keep, signal: keep ? undefined : AbortSignal.timeout(10000), headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ prenom: val('prenom'), email: val('email'), besoin: val('besoin'), entreprise: val('entreprise'), service: val('service'),
+      canal: val('canal'), telephone: val('telephone'), page: location.pathname.split('/').pop() || 'accueil', termine: !!done, botcheck: !!robot() }) })
+    .then(r => r.ok ? r.json().then(j => j.ok === true, () => false) : false, () => false) : Promise.resolve(false);
 
   // Envoi normal (fin de l'étape 2)
-  const send = async msg => {
+  const send = async (msg, done) => {
     if (robot()) return true; // robot : rien n'est envoyé
+    if (await viaQG(done)) return true;
     const stop = new AbortController(), t = setTimeout(() => stop.abort(), 15000);
     try {
       const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData(msg), signal: stop.signal, headers: { Accept: 'application/json' } });
@@ -97,6 +113,7 @@
   const rescue = () => {
     if (sent || step !== 2 || robot()) return;
     sent = partial = true; clearTimeout(timer);
+    if (FN) viaQG(false, true);   // les deux, au cas où la fonction ne répond pas
     fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData(message(false)), keepalive: true }).catch(() => {});
   };
   addEventListener('pagehide', rescue);
@@ -110,14 +127,14 @@
     const msg = message(done, !done);
     if (sent && !partial) { show(3); return; } // déjà envoyé : rien à renvoyer
     if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Envoi…'; }
-    const ok = await send(msg);
+    const ok = await send(msg, done);
     if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Valider'; }
     if (!ok) return fail(msg);
     sent = true; partial = false; clearTimeout(timer);
     const call = done && val('canal') === 'Par téléphone';
     form.querySelector('[data-next]').textContent = call
-      ? 'Je vous rappelle sous 24 h au numéro indiqué. D’ici là, connectons-nous sur LinkedIn.'
-      : (val('besoin') === 'Recevoir la mini-analyse' ? (done || val('entreprise') ? 'Je vous envoie votre mini-analyse sous 24 h.' : 'Je vous écris sous 24 h pour préparer votre mini-analyse.') + ' D’ici là, connectons-nous sur LinkedIn.' : 'Je vous écris sous 24 h. D’ici là, connectons-nous sur LinkedIn.');// D’ici là, connectons-nous sur LinkedIn.' : 'Je vous écris sous 24 h. D’ici là, connectons-nous sur LinkedIn.');
+      ? 'Je vous rappelle sous 48 h au numéro indiqué. D’ici là, connectons-nous sur LinkedIn.'
+      : (val('besoin') === 'Recevoir la mini-analyse' ? (done || val('entreprise') ? 'Je vous envoie votre mini-analyse sous 48 h.' : 'Je vous écris sous 48 h pour préparer votre mini-analyse.') + ' D’ici là, connectons-nous sur LinkedIn.' : 'Je vous écris sous 48 h. D’ici là, connectons-nous sur LinkedIn.');// D’ici là, connectons-nous sur LinkedIn.' : 'Je vous écris sous 48 h. D’ici là, connectons-nous sur LinkedIn.');
     show(3);
   };
 
